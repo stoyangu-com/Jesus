@@ -1,5 +1,5 @@
-import supabase from './_lib/db-client.js';
-import { setCors, kenyaDateISO } from './_lib/auth-helper.js';
+import supabase from '../lib/db-client.js';
+import { setCors, kenyaDateISO } from '../lib/auth-helper.js';
 
 async function bumpDailyStore(storeId, field) {
   const date = kenyaDateISO();

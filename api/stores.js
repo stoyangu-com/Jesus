@@ -1,5 +1,5 @@
-import supabase from './_lib/db-client.js';
-import { setCors, requireUser, slugify } from './_lib/auth-helper.js';
+import supabase from '../lib/db-client.js';
+import { setCors, requireUser, slugify } from '../lib/auth-helper.js';
 
 function generatePassword(slug, whatsapp) {
   const digits = String(whatsapp || '').replace(/\D/g, '').slice(-4) || '2024';

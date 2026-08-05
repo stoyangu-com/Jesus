@@ -1,5 +1,5 @@
-import supabase from './_lib/db-client.js';
-import { setCors } from './_lib/auth-helper.js';
+import supabase from '../lib/db-client.js';
+import { setCors } from '../lib/auth-helper.js';
 
 export default async function handler(req, res) {
   setCors(res);
