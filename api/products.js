@@ -1,5 +1,5 @@
-import supabase from './db-client.js';
-import { setCors, requireUser } from './auth-helper.js';
+import supabase from './_lib/db-client.js';
+import { setCors, requireUser } from './_lib/auth-helper.js';
 
 async function canAccessStore(auth, storeId) {
   if (auth.profile?.role === 'founder') return true;

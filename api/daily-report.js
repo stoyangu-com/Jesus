@@ -1,5 +1,5 @@
-import supabase from './db-client.js';
-import { setCors, kenyaDateISO } from './auth-helper.js';
+import supabase from './_lib/db-client.js';
+import { setCors, kenyaDateISO } from './_lib/auth-helper.js';
 
 function formatKES(n) {
   return `KES ${Number(n || 0).toLocaleString('en-KE')}`;

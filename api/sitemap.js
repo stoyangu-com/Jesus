@@ -1,5 +1,5 @@
-import supabase from './db-client.js';
-import { setCors } from './auth-helper.js';
+import supabase from './_lib/db-client.js';
+import { setCors } from './_lib/auth-helper.js';
 
 function escapeXml(s) {
   return String(s || '')
