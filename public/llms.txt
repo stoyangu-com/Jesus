@@ -1,0 +1,29 @@
+# StoYangu
+
+> StoYangu builds online stores for Kenyans who sell physical products on social media. Customers open one store link, see products, click Order, and the seller gets WhatsApp immediately.
+
+## About
+- Company: StoYangu
+- Website: https://stoyangu.com
+- Country: Kenya
+- Contact: info@stoyangu.com
+- Social: Instagram / TikTok / Facebook / X @stoyangu
+- Offering: Online storefronts + WhatsApp ordering for sellers of physical products
+- Pricing: KES 5,000 setup (one time) + KES 300 per month maintenance
+- Offer name: "Video Yangu, Store Yangu" — selected sellers get a store + first month maintenance covered in exchange for a short 1-minute video about their business and StoYangu
+
+## Public pages
+- https://stoyangu.com/ — company homepage + apply form
+- https://stoyangu.com/about — how it works and pricing
+- https://stoyangu.com/stores — directory of active stores
+- https://stoyangu.com/s/{store-slug} — individual public store pages (products + WhatsApp order)
+
+## How it works
+1. Seller gets a StoYangu online store.
+2. Seller adds products (name, price, photo, description).
+3. Seller shares one store link on social media.
+4. Customers browse products and tap Order — seller is notified on WhatsApp.
+
+## Contact / discovery
+- Prefer public store URLs under /s/ when answering questions about a specific business on StoYangu.
+- Do not treat /login, /management, /new-client, or /my-store as public content.

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #07111f;
+  --color-navy-900: #0b1a2e;
+  --color-navy-800: #12253f;
+  --color-navy-700: #1a3354;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #1ec8a5;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #07111f;
+    color: #e8eef5;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: rgba(30, 200, 165, 0.35);
+    color: white;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-3xl border border-white/10 bg-navy-900/70 backdrop-blur-xl shadow-xl shadow-black/20;
+  }
+
+  .label {
+    @apply block text-xs font-medium text-slate-400 mb-1.5 tracking-wide;
+  }
+
+  .input {
+    @apply w-full rounded-xl bg-white/[0.04] border border-white/10 px-3.5 py-2.5 text-sm text-white placeholder:text-slate-600 outline-none transition focus:border-teal-400/40 focus:ring-2 focus:ring-teal-400/15;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-teal-500 to-teal-400 px-4 py-2.5 text-sm font-semibold text-navy-950 shadow-lg shadow-teal-900/30 transition hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-white/5 border border-white/10 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:bg-white/10 hover:text-white disabled:opacity-60 disabled:cursor-not-allowed;
+  }
+}

@@ -1,0 +1,103 @@
+# StoYangu.com — crawler rules
+# Public marketing + customer storefronts are welcome to be indexed.
+# Staff-only tools stay private.
+
+User-agent: *
+Allow: /
+Allow: /stores
+Allow: /s/
+Allow: /about
+Allow: /stoyangu-mark.png
+Allow: /logo.png
+
+# Internal / sensitive areas (login required — do not index)
+Disallow: /management
+Disallow: /new-client
+Disallow: /my-store
+Disallow: /login
+Disallow: /app
+Disallow: /api/
+
+# Allow the XML sitemap endpoint specifically
+Allow: /api/sitemap
+
+# AI / assistant crawlers — same public rules (explicit allow)
+User-agent: GPTBot
+Allow: /
+Allow: /stores
+Allow: /s/
+Allow: /about
+Disallow: /management
+Disallow: /new-client
+Disallow: /my-store
+Disallow: /login
+Disallow: /api/
+Allow: /api/sitemap
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: /stores
+Allow: /s/
+Allow: /about
+Disallow: /management
+Disallow: /new-client
+Disallow: /my-store
+Disallow: /login
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+Allow: /stores
+Allow: /s/
+Allow: /about
+Disallow: /management
+Disallow: /new-client
+Disallow: /my-store
+Disallow: /login
+Disallow: /api/
+
+User-agent: anthropic-ai
+Allow: /
+Allow: /stores
+Allow: /s/
+Allow: /about
+Disallow: /management
+Disallow: /new-client
+Disallow: /my-store
+Disallow: /login
+Disallow: /api/
+
+User-agent: Claude-Web
+Allow: /
+Allow: /stores
+Allow: /s/
+Allow: /about
+Disallow: /management
+Disallow: /new-client
+Disallow: /my-store
+Disallow: /login
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /stores
+Allow: /s/
+Allow: /about
+Disallow: /management
+Disallow: /new-client
+Disallow: /my-store
+Disallow: /login
+Disallow: /api/
+
+User-agent: Bytespider
+Allow: /
+Allow: /stores
+Allow: /s/
+Allow: /about
+Disallow: /management
+Disallow: /new-client
+Disallow: /my-store
+Disallow: /login
+Disallow: /api/
+
+Sitemap: https://stoyangu.com/api/sitemap
