@@ -19,10 +19,10 @@ function AppHome() {
 
   if (loading) return <LoadingScreen />;
 
-  // If we are on a store subdomain, never show the marketing homepage.
-  // Redirect to the storefront path /s/{slug}
+  // If we are on a store subdomain, render the PublicStore directly on this domain
+  // instead of redirecting to /s/{slug}.
   if (storeSlug) {
-    return <Navigate to={`/s/${storeSlug}`} replace />;
+    return <PublicStore />;
   }
 
   // Logged-in staff/owners go to their tools; everyone else sees the public homepage
