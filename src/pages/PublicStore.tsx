@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import JsonStorefront from '../components/storefront/JsonStorefront';
+import { getStoreSlugFromHost } from '../lib/storeLinks';
 
 interface StoreData {
   store: {
@@ -16,14 +17,20 @@ interface StoreData {
 }
 
 const PublicStore: React.FC = () => {
-  const { slug } = useParams<{ slug: string }>();
+  const { slug: paramSlug } = useParams<{ slug: string }>();
   const [data, setData] = useState<StoreData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const slug = paramSlug || getStoreSlugFromHost(window.location.hostname);
+
   useEffect(() => {
     async function fetchStore() {
-      if (!slug) return;
+      if (!slug) {
+        setError('Store slug not found in URL or hostname');
+        setLoading(false);
+        return;
+      }
       try {
         setLoading(true);
         const res = await fetch(`/api/public-stores?slug=${slug}`);

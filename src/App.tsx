@@ -10,11 +10,22 @@ import Home from './pages/Home';
 import About from './pages/About';
 import StoresDirectory from './pages/StoresDirectory';
 import PublicStore from './pages/PublicStore';
+import { getStoreSlugFromHost } from './lib/storeLinks';
 
 function AppHome() {
   const { user, profile, loading } = useAuth();
-  // Logged-in staff/owners go to their tools; everyone else sees the public homepage
+  const host = window.location.hostname;
+  const storeSlug = getStoreSlugFromHost(host);
+
   if (loading) return <LoadingScreen />;
+
+  // If we are on a store subdomain, never show the marketing homepage.
+  // Redirect to the storefront path /s/{slug}
+  if (storeSlug) {
+    return <Navigate to={`/s/${storeSlug}`} replace />;
+  }
+
+  // Logged-in staff/owners go to their tools; everyone else sees the public homepage
   if (user && profile?.role === 'founder') return <Navigate to="/management" replace />;
   if (user && profile?.role === 'owner') return <Navigate to="/my-store" replace />;
   return <Home />;
