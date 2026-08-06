@@ -104,7 +104,7 @@ export default function Login() {
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
+            <div className="mb-5">
               <label className="label">Email</label>
               <div className="relative">
                 <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -120,7 +120,7 @@ export default function Login() {
               </div>
             </div>
 
-            <div>
+            <div className="mb-5">
               <label className="label">Password</label>
               <div className="relative">
                 <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
@@ -185,7 +185,7 @@ export default function Login() {
               />
               <path
                 fill="#FBBC05"
-                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
               />
               <path
                 fill="#EA4335"
@@ -218,6 +218,7 @@ export default function Login() {
             stoyangu.com
           </Link>
         </p>
+        <p className="text-center text-[10px] text-slate-700 mt-2">System Update v2.1</p>
       </motion.div>
     </div>
   );
