@@ -29,9 +29,20 @@ const PublicStore: React.FC = () => {
         const res = await fetch(`/api/public-stores?slug=${slug}`);
         if (!res.ok) {
           if (res.status === 404) throw new Error('Store not found');
-          throw new Error('Failed to load store');
+          throw new Error(`API error: ${res.status}`);
         }
         const result = await res.json();
+
+        // SAFE PARSING of design_json if it's a string
+        if (result.store && typeof result.store.design_json === 'string') {
+          try {
+            result.store.design_json = JSON.parse(result.store.design_json);
+          } catch (e) {
+            console.error('Failed to parse design_json string:', e);
+            result.store.design_json = {};
+          }
+        }
+
         setData(result);
       } catch (err: any) {
         setError(err.message);
