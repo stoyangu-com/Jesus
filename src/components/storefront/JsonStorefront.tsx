@@ -14,6 +14,7 @@ import {
   AlertCircle,
   Info
 } from 'lucide-react';
+import StorefrontHeader from '../StorefrontHeader';
 
 interface Theme {
   primary_color?: string;
@@ -80,13 +81,13 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
   }, [design]);
 
   const colors = {
-    primary: theme.primary_color || design.primaryColor || '#D91D2A',
-    secondary: theme.secondary_color || '#0B1A2E',
-    accent: theme.accent_color || '#FFC72C',
-    bg: theme.background_color || '#FAFAFA',
-    text: theme.text_color || '#111827',
-    radius: theme.border_radius || '14px',
-    font: theme.font_family || 'DM Sans, system-ui, sans-serif',
+    primary: 'var(--sy-primary)',
+    secondary: 'var(--sy-primary-dark)',
+    accent: 'var(--sy-accent)',
+    bg: 'var(--sy-canvas)',
+    text: 'var(--sy-ink)',
+    radius: 'var(--sy-radius-card)',
+    font: 'var(--sy-font-body)',
   };
 
   // 3. SECTION RESOLUTION
@@ -176,18 +177,18 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
                 <div className="absolute inset-0 z-0">
                   <img src={getImageUrl(item.image, `hero-${index}-${i}`)} className="w-full h-full object-cover opacity-40" alt="Hero" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                </div>
+                </div}
                 <div className="relative z-10 text-center max-w-4xl">
-                  <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: colors.font }}>
+                  <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="sy-hero-heading mb-6 leading-tight">
                     {item.headline || item.title || storeName}
                   </motion.h1>
-                  <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="text-lg md:text-xl text-gray-200 mb-10" style={{ fontFamily: colors.font }}>
+                  <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="sy-body text-lg md:text-xl mb-10">
                     {item.subheadline || item.description || ''}
                   </motion.p>
-                  <motion.a initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} href={`https://wa.me/${normalizePhone(whatsapp)}`} className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold transition-transform hover:scale-105" style={{ backgroundColor: colors.primary, borderRadius: colors.radius }}>
+                  <motion.a initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} href={`https://wa.me/${normalizePhone(whatsapp)}`} className="sy-btn sy-btn-primary inline-flex items-center gap-2 px-8 py-4 font-semibold transition-transform hover:scale-105">
                     <ShoppingBag size={20} /> {item.cta_text || 'Shop Now'}
                   </motion.a>
-                </div>
+                </div}
               </div>
             )) : <div className="py-20 text-center text-white">Welcome to {storeName}</div>}
           </section>
@@ -197,15 +198,15 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
       if (['feature_grid', 'features', 'trust_features', 'benefits'].includes(type)) {
         const features = Array.isArray(content) ? content : (content?.features || []);
         return (
-          <section className="py-20 px-6 max-w-7xl mx-auto">
+          <section className="py-20 px-6 max-w-7xl mx-auto" style={{ paddingBottom: 'var(--sy-space-section)' }}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {features.map((f: any, i: number) => (
-                <div key={i} className="p-8 text-center transition-all hover:shadow-lg" style={{ borderRadius: colors.radius, backgroundColor: 'white' }}>
+                <div key={i} className="sy-card p-8 text-center transition-all hover:shadow-lg">
                   <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center rounded-full text-white" style={{ backgroundColor: colors.primary }}>
                     <CheckCircle2 size={24} />
-                  </div>
-                  <h3 className="text-xl font-bold mb-3" style={{ color: colors.text, fontFamily: colors.font }}>{f.title}</h3>
-                  <p className="text-gray-600" style={{ fontFamily: colors.font }}>{f.description}</p>
+                  </div}
+                  <h3 className="text-xl font-bold mb-3 sy-body" style={{ color: colors.text }}>{f.title}</h3>
+                  <p className="sy-body"> {f.description}</p>
                 </div>
               ))}
             </div>
@@ -219,7 +220,7 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
           <section className="py-12 px-6 max-w-7xl mx-auto">
             <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
               {cats.map((c: any, i: number) => (
-                <button key={i} className="whitespace-nowrap px-6 py-3 font-medium transition-colors flex items-center gap-2" style={{ backgroundColor: 'white', color: colors.text, borderRadius: colors.radius, border: `1px solid ${colors.primary}22` }}>
+                <button key={i} className="sy-btn sy-btn-ghost whitespace-nowrap px-6 py-3 font-medium transition-colors flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full" style={{ backgroundColor: colors.primary }} /> {c.name || c.label}
                 </button>
               ))}
@@ -235,9 +236,9 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
         return (
           <section className="py-20 px-6 max-w-7xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ color: colors.text, fontFamily: colors.font }}>{settings?.title || 'Our Products'}</h2>
+              <h2 className="sy-section-heading mb-4">{settings?.title || 'Our Products'}</h2>
               <div className="w-20 h-1 mx-auto" style={{ backgroundColor: colors.primary }} />
-            </div>
+            </div}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {gridProducts.map((p: any, i: number) => {
                 const prod: Product = {
@@ -249,18 +250,18 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
                   badge: p.badge
                 };
                 return (
-                  <motion.div key={i} whileHover={{ y: -5 }} className="group relative overflow-hidden transition-all" style={{ borderRadius: colors.radius, backgroundColor: 'white', border: `1px solid ${colors.text}11` }}>
+                  <motion.div key={i} whileHover={{ y: -5 }} className="sy-card group relative overflow-hidden transition-all">
                     <div className="aspect-square overflow-hidden relative">
                       <img src={getImageUrl(prod.image_url, prod.name)} className="w-full h-full object-cover transition-transform group-hover:scale-110" alt={prod.name} />
                       {prod.badge && <div className="absolute top-3 left-3 px-3 py-1 text-xs font-bold text-white" style={{ backgroundColor: colors.accent, borderRadius: '4px' }}>{prod.badge}</div>}
-                    </div>
+                    </div}
                     <div className="p-4">
-                      <h3 className="font-bold text-lg truncate" style={{ color: colors.text, fontFamily: colors.font }}>{prod.name}</h3>
-                      <p className="text-xl font-bold mb-4" style={{ color: colors.primary, fontFamily: colors.font }}>{prod.price}</p>
-                      <button onClick={() => handleOrder(prod)} className="w-full py-3 flex items-center justify-center gap-2 text-white font-semibold transition-opacity hover:opacity-90" style={{ backgroundColor: colors.primary, borderRadius: colors.radius }}>
+                      <h3 className="font-bold text-lg truncate sy-body" style={{ color: colors.text }}>{prod.name}</h3>
+                      <p className="text-xl font-bold mb-4 sy-body" style={{ color: colors.primary }}>{prod.price}</p>
+                      <button onClick={() => handleOrder(prod)} className="sy-btn sy-btn-primary w-full py-3 flex items-center justify-center gap-2 text-white font-semibold transition-opacity hover:opacity-90">
                         <MessageCircle size={18} /> Order via WhatsApp
                       </button>
-                    </div>
+                    </div}
                   </motion.div>
                 );
               })}
@@ -274,13 +275,13 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
           <section className="py-12 px-6 max-w-7xl mx-auto">
             <div className="relative overflow-hidden p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 text-white" style={{ backgroundColor: colors.secondary, borderRadius: colors.radius }}>
               <div>
-                <h2 className="text-2xl md:text-3xl font-bold mb-2" style={{ fontFamily: colors.font }}>{content?.title || 'Special Offer!'}</h2>
-                <p className="text-lg opacity-90" style={{ fontFamily: colors.font }}>{content?.subtitle || 'Get the best deals today.'}</p>
+                <h2 className="text-2xl md:text-3xl font-bold mb-2 sy-body" style={{ color: 'white' }}>{content?.title || 'Special Offer!'}</h2>
+                <p className="text-lg opacity-90 sy-body" style={{ color: 'white' }}>{content?.subtitle || 'Get the best deals today.'}</p>
               </div>
-              <a href={`https://wa.me/${normalizePhone(whatsapp)}`} className="whitespace-nowrap px-8 py-4 rounded-full font-bold transition-transform hover:scale-105 flex items-center gap-2" style={{ backgroundColor: colors.primary, borderRadius: colors.radius }}>
+              <a href={`https://wa.me/${normalizePhone(whatsapp)}`} className="sy-btn sy-btn-primary whitespace-nowrap px-8 py-4 font-bold transition-transform hover:scale-105 flex items-center gap-2">
                 Claim Offer <ArrowRight size={20} />
-              </a>
-            </div>
+              </a}
+            </div}
           </section>
         );
       }
@@ -290,25 +291,25 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
         return (
           <section className="py-20 px-6 max-w-7xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4" style={{ color: colors.text, fontFamily: colors.font }}>Customer Love</h2>
+              <h2 className="sy-section-heading mb-4">{content?.title || 'Customer Love'}</h2>
               <div className="flex justify-center gap-1 text-yellow-400 mb-4">
                 {[...Array(5)].map((_, i) => <Star key={i} size={20} fill="currentColor" />)}
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md: la-grid-cols-3 gap-8">
+              </div}
+            </div}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {quotes.map((q: any, i: number) => (
-                <div key={i} className="p-8 relative transition-all" style={{ borderRadius: colors.radius, backgroundColor: 'white', border: `1px solid ${colors.text}11` }}>
-                  <div className="text-4xl absolute top-4 right-4 opacity-10" style={{ color: colors.primary }}>“</div>
-                  <p className="text-gray-600 mb-6 italic" style={{ fontFamily: colors.font }}>{q.text}</p>
+                <div key={i} className="sy-card p-8 relative transition-all">
+                  <div className="text-4xl absolute top-4 right-4 opacity-10" style={{ color: colors.primary }}>“</div}
+                  <p className="sy-body mb-6 italic">{q.text}</p>
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-gray-200 overflow-hidden">
                       <img src={getImageUrl(q.image, q.author)} alt={q.author} />
-                    </div>
+                    </div}
                     <div>
-                      <div className="font-bold" style={{ color: colors.text, fontFamily: colors.font }}>{q.author}</div>
-                      <div className="text-sm text-gray-500">{q.role}</div>
-                    </div>
-                  </div>
+                      <div className="font-bold sy-body" style={{ color: colors.text }}>{q.author}</div>
+                      <div className="text-sm text-gray-500 sy-body">{q.role}</div>
+                    </div}
+                  </div}
                 </div>
               ))}
             </div>
@@ -323,34 +324,34 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   {logoUrl && <img src={logoUrl} className="w-10 h-10 object-contain" alt="Logo" />}
-                  <span className="text-2xl font-bold" style={{ color: colors.text, fontFamily: colors.font }}>{storeName}</span>
-                </div>
-                <p className="text-gray-600 mb-6" style={{ fontFamily: colors.font }}>{content?.about || `Welcome to ${storeName}.`}</p>
+                  <span className="text-2xl font-bold sy-body" style={{ color: colors.text }}>{storeName}</span>
+                </div}
+                <p className="sy-body mb-6">{content?.about || `Welcome to ${storeName}.`}</p>
                 <div className="flex gap-4">
                   <a href="#" className="p-3 rounded-full transition-colors" style={{ backgroundColor: `${colors.text}11`, color: colors.text }}><Facebook size={20} /></a>
                   <a href="#" className="p-3 rounded-full transition-colors" style={{ backgroundColor: `${colors.text}11`, color: colors.text }}><Instagram size={20} /></a>
                   <a href="#" className="p-3 rounded-full transition-colors" style={{ backgroundColor: `${colors.text}11`, color: colors.text }}><Mail size={20} /></a>
-                </div>
-              </div>
+                </div}
+              </div}
               <div>
-                <h4 className="text-xl font-bold mb-6" style={{ color: colors.text, fontFamily: colors.font }}>Contact Us</h4>
+                <h4 className="text-xl font-bold mb-6 sy-body" style={{ color: colors.text }}>Contact Us</h4>
                 <ul className="space-y-4">
-                  <li className="flex items-center gap-3 text-gray-600" style={{ fontFamily: colors.font }}><Phone size={18} style={{ color: colors.primary }} /> {content?.phone || whatsapp}</li>
-                  <li className="flex items-center gap-3 text-gray-600" style={{ fontFamily: colors.font }}><Mail size={18} style={{ color: colors.primary }} /> {content?.email || 'contact@store.com'}</li>
-                  <li className="flex items-center gap-3 text-gray-600" style={{ fontFamily: colors.font }}><MapPin size={18} style={{ color: colors.primary }} /> {content?.address || 'Nairobi, Kenya'}</li>
+                  <li className="flex items-center gap-3 sy-body"><Phone size={18} style={{ color: colors.primary }} /> {content?.phone || whatsapp}</li>
+                  <li className="flex items-center gap-3 sy-body"><Mail size={18} style={{ color: colors.primary }} /> {content?.email || 'contact@store.com'}</li>
+                  <li className="flex items-center gap-3 sy-body"><MapPin size={18} style={{ color: colors.primary }} /> {content?.address || 'Nairobi, Kenya'}</li>
                 </ul>
-              </div>
+              </div}
               <div>
-                <h4 className="text-xl font-bold mb-6" style={{ color: colors.text, fontFamily: colors.font }}>Quick Order</h4>
-                <p className="text-gray-600 mb-6" style={{ fontFamily: colors.font }}>Ready to buy? Message us on WhatsApp.</p>
-                <a href={`https://wa.me/${normalizePhone(whatsapp)}`} className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-semibold transition-transform hover:scale-105" style={{ backgroundColor: colors.primary, borderRadius: colors.radius }}>
+                <h4 className="text-xl font-bold mb-6 sy-body" style={{ color: colors.text }}>Quick Order</h4>
+                <p className="sy-body mb-6">Ready to buy? Message us on WhatsApp.</p>
+                <a href={`https://wa.me/${normalizePhone(whatsapp)}`} className="sy-btn sy-btn-primary inline-flex items-center gap-2 px-8 py-4 font-semibold transition-transform hover:scale-105">
                   <MessageCircle size={20} /> Chat with Us
-                </a>
-              </div>
-            </div>
-            <div className="max-w-7xl mx-auto mt-20 pt-8 border-t text-center text-gray-500 text-sm" style={{ borderColor: `${colors.text}11`, fontFamily: colors.font }}>
+                </a}
+              </div}
+            </div}
+            <div className="max-w-7xl mx-auto mt-20 pt-8 border-t text-center text-gray-500 text-sm sy-body" style={{ borderColor: `${colors.text}11` }}>
               © {new Date().getFullYear()} {storeName}. Powered by StoYangu
-            </div>
+            </div}
           </footer>
         );
       }
@@ -373,6 +374,24 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
     ];
   }, [sections]);
 
+  const headerEngine = useMemo(() => ({
+    header: {
+      logoUrl,
+      wordmark: storeName,
+      shopLabel: 'Shop Now',
+      nav: activeSections.map(s => ({ label: s.type.toUpperCase(), target: s.type }))
+    },
+    announcement: design.announcement || {
+      primary: 'Welcome to our official store!',
+      secondary: 'Quality products, fast delivery',
+    },
+    sections: activeSections.map((s, i) => ({
+      kind: s.type,
+      key: `section-${i}`,
+      navLabel: s.title || s.type
+    }))
+  }), [activeSections, design, storeName, logoUrl]);
+
   const isDebug = typeof window !== 'undefined' && window.location.search.includes('debug=1');
 
   return (
@@ -384,20 +403,15 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
           <span>Products: {allProducts.length}</span>
           <span>Primary: {colors.primary}</span>
           <span>Design Type: {typeof design}</span>
-        </div>
+        </div}
       )}
 
-      <header className="sticky top-0 z-50 backdrop-blur-md border-b" style={{ backgroundColor: `${colors.bg}ee`, borderBottomColor: `${colors.text}11` }}>
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            {logoUrl && <img src={logoUrl} className="w-10 h-10 object-contain" alt="Logo" />}
-            <span className="text-xl font-bold" style={{ color: colors.text }}>{storeName}</span>
-          </div>
-          <a href={`https://wa.me/${normalizePhone(whatsapp)}`} className="hidden md:flex items-center gap-2 px-6 py-2 rounded-full text-white font-medium transition-transform hover:scale-105" style={{ backgroundColor: colors.primary, borderRadius: colors.radius }}>
-            <MessageCircle size={18} /> WhatsApp
-          </a>
-        </div>
-      </header>
+      <StorefrontHeader
+        homeUrl="/"
+        engine={headerEngine}
+        storeName={storeName}
+        logoUrl={logoUrl}
+      />
 
       <main>
         {activeSections.map((s, i) => <SectionRenderer key={i} section={s} index={i} />)}
@@ -405,14 +419,14 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
         {/* FINAL SAFETY: If no products appeared in any section but we have DB products */}
         {sections.length === 0 && allProducts.length > 0 && (
            <div className="py-20 px-6 max-w-7xl mx-auto text-center">
-             <h2 className="text-3xl font-bold mb-12" style={{ color: colors.text }}>Our Products</h2>
+             <h2 className="sy-section-heading mb-12">Our Products</h2>
              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                {allProducts.map((p, i) => (
-                 <div key={i} className="p-4 text-center bg-white rounded-lg border" style={{ borderRadius: colors.radius, borderColor: `${colors.text}11` }}>
+                 <div key={i} className="sy-card p-4 text-center border" style={{ borderColor: `${colors.text}11` }}>
                    <img src={getImageUrl(p.image_url, p.name)} className="aspect-square object-cover mb-4 rounded-lg" alt={p.name} />
-                   <h3 className="font-bold mb-2">{p.name}</h3>
-                   <p className="text-lg font-bold mb-4" style={{ color: colors.primary }}>{p.price}</p>
-                   <button onClick={() => handleOrder(p)} className="w-full py-2 text-white font-semibold" style={{ backgroundColor: colors.primary, borderRadius: colors.radius }}>
+                   <h3 className="font-bold mb-2 sy-body">{p.name}</h3>
+                   <p className="text-lg font-bold mb-4 sy-body" style={{ color: colors.primary }}>{p.price}</p>
+                   <button onClick={() => handleOrder(p)} className="sy-btn sy-btn-primary w-full py-2 text-white font-semibold">
                      Order Now
                    </button>
                  </div>
@@ -424,7 +438,7 @@ const JsonStorefront: React.FC<JsonStorefrontProps> = ({
 
       <a href={`https://wa.me/${normalizePhone(whatsapp)}`} className="fixed bottom-6 right-6 z-50 p-4 text-white shadow-2xl transition-transform hover:scale-110" style={{ backgroundColor: '#25D366', borderRadius: '50%' }}>
         <MessageCircle size={32} />
-      </a>
+      </a}
     </div>
   );
 };

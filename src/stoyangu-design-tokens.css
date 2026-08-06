@@ -1,0 +1,229 @@
+/**
+ * stoyangu-design-tokens.css
+ * ─────────────────────────────────────────────────────────────────────────
+ * The actual design system extracted from the Stoyangu production bundle —
+ * these are the real default values that ship when no custom design_json
+ * overrides them (colours, type scale, spacing, radii, shadows, motion).
+ * Reconstructed from the `ow()` theme-normalizer function in
+ * assets/index-BwoJQEw7.js.
+ *
+ * Drop this in and load it globally (e.g. import in your root layout /
+ * main.tsx / _app.tsx). Everything downstream (buttons, headings, cards)
+ * should reference these variables rather than hardcoded values, so the
+ * whole app can still be re-themed from a config object later if you want
+ * that (see the resilientJsonRenderer.tsx from earlier for how the
+ * original app let a JSON config override each of these).
+ * ─────────────────────────────────────────────────────────────────────────
+ */
+
+:root {
+  /* ── Colour ─────────────────────────────────────────────────────── */
+  --sy-primary: #0755E9;        /* blue — primary brand colour */
+  --sy-primary-dark: #071D49;   /* deep navy — headings, hover states */
+  --sy-primary-soft: #EAF2FF;   /* pale blue tint — soft backgrounds */
+  --sy-canvas: #F7F9FC;         /* page background */
+  --sy-ink: #081329;            /* body text / high-contrast text */
+  --sy-muted: #667085;          /* secondary/muted text */
+  --sy-accent: #C8FF2E;         /* lime — accent highlights, dots, CTAs */
+  --sy-border: #DDE5F0;
+  --sy-white: #FFFFFF;
+
+  /* ── Type ───────────────────────────────────────────────────────── */
+  --sy-font-body: "DM Sans", system-ui, sans-serif;
+  --sy-font-display: "Manrope", system-ui, sans-serif;      /* headings */
+  --sy-font-accent: "Cormorant Garamond", Georgia, serif;   /* italic accents */
+
+  --sy-hero-size: clamp(50px, 5.6vw, 94px);
+  --sy-hero-size-mobile: clamp(49px, 14.5vw, 72px);
+  --sy-hero-weight: 700;
+  --sy-hero-lh: 0.96;
+  --sy-hero-ls: -0.065em;
+
+  --sy-hero-accent-size: 1.13em;
+  --sy-hero-accent-weight: 500;
+  --sy-hero-accent-lh: 0.92;
+  --sy-hero-accent-color: var(--sy-primary);
+
+  --sy-section-heading-size: clamp(40px, 5vw, 72px);
+  --sy-section-heading-weight: 700;
+  --sy-section-heading-lh: 1.04;
+  --sy-section-heading-ls: -0.055em;
+
+  --sy-body-size: 15px;
+  --sy-body-lh: 1.75;
+  --sy-body-weight: 400;
+  --sy-body-color: var(--sy-muted);
+
+  --sy-eyebrow-size: 11px;
+  --sy-eyebrow-weight: 800;
+  --sy-eyebrow-ls: 0.16em;
+
+  /* ── Shape ──────────────────────────────────────────────────────── */
+  --sy-radius-card: 28px;
+  --sy-radius-button: 999px;   /* fully pill-shaped buttons */
+  --sy-radius-image: 24px;
+
+  /* ── Spacing ────────────────────────────────────────────────────── */
+  --sy-space-section: 120px;   /* vertical rhythm between sections */
+  --sy-space-gap: 24px;        /* grid gap */
+  --sy-space-gutter: 6vw;      /* page left/right gutter */
+
+  /* ── Shadow ─────────────────────────────────────────────────────── */
+  --sy-shadow-card: 0 18px 50px rgba(8, 19, 41, 0.10);
+  --sy-shadow-soft: 0 8px 30px rgba(8, 19, 41, 0.06);
+  --sy-shadow-lift: 0 24px 60px rgba(8, 19, 41, 0.14);
+
+  /* ── Motion ─────────────────────────────────────────────────────── */
+  --sy-motion-duration: 700ms;
+  --sy-motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ── Image overlays (used on hero/category imagery) ────────────── */
+  --sy-grad-hero-shade: linear-gradient(
+    180deg,
+    rgba(8, 19, 41, 0.05) 0%,
+    rgba(8, 19, 41, 0.55) 100%
+  );
+  --sy-grad-category-shade: linear-gradient(
+    180deg,
+    rgba(8, 19, 41, 0.05) 20%,
+    rgba(8, 19, 41, 0.78) 100%
+  );
+
+  /* ── Buttons ────────────────────────────────────────────────────── */
+  --sy-btn-primary-bg: var(--sy-primary);
+  --sy-btn-primary-color: var(--sy-white);
+  --sy-btn-primary-hover: var(--sy-primary-dark);
+
+  --sy-btn-ghost-bg: var(--sy-white);
+  --sy-btn-ghost-color: var(--sy-ink);
+  --sy-btn-ghost-border: 1px solid var(--sy-border);
+
+  --sy-btn-lime-bg: var(--sy-accent);
+  --sy-btn-lime-color: var(--sy-primary-dark);
+
+  --sy-btn-min-height: 49px;
+  --sy-btn-font-size: 13px;
+  --sy-btn-font-weight: 700;
+
+  --sy-focus-ring: 0 0 0 3px var(--sy-primary-soft), 0 0 0 5px var(--sy-primary);
+}
+
+/* ── Base button styles ───────────────────────────────────────────────
+   .sy-btn is the shared shape; combine with a variant class. */
+.sy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--sy-btn-min-height);
+  padding: 0 24px;
+  border-radius: var(--sy-radius-button);
+  font-family: var(--sy-font-body);
+  font-size: var(--sy-btn-font-size);
+  font-weight: var(--sy-btn-font-weight);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: background var(--sy-motion-duration) var(--sy-motion-ease),
+    color var(--sy-motion-duration) var(--sy-motion-ease),
+    transform 150ms ease;
+  cursor: pointer;
+  border: none;
+}
+.sy-btn:active {
+  transform: scale(0.97);
+}
+.sy-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--sy-focus-ring);
+}
+
+.sy-btn-primary {
+  background: var(--sy-btn-primary-bg);
+  color: var(--sy-btn-primary-color);
+}
+.sy-btn-primary:hover {
+  background: var(--sy-btn-primary-hover);
+}
+
+.sy-btn-ghost {
+  background: var(--sy-btn-ghost-bg);
+  color: var(--sy-btn-ghost-color);
+  border: var(--sy-btn-ghost-border);
+}
+
+.sy-btn-lime {
+  background: var(--sy-btn-lime-bg);
+  color: var(--sy-btn-lime-color);
+}
+
+/* Nav link buttons in the header */
+.sy-nav-btn {
+  border-radius: var(--sy-radius-button);
+  color: var(--sy-ink);
+  transition: background var(--sy-motion-duration) var(--sy-motion-ease);
+}
+.sy-nav-btn:hover {
+  background: var(--sy-primary-soft);
+  color: var(--sy-primary);
+}
+
+/* Eyebrow / kicker text above headings */
+.sy-eyebrow {
+  font-size: var(--sy-eyebrow-size);
+  font-weight: var(--sy-eyebrow-weight);
+  letter-spacing: var(--sy-eyebrow-ls);
+  text-transform: uppercase;
+  color: var(--sy-primary);
+}
+
+/* Section heading */
+.sy-section-heading {
+  font-family: var(--sy-font-display);
+  font-size: var(--sy-section-heading-size);
+  font-weight: var(--sy-section-heading-weight);
+  line-height: var(--sy-section-heading-lh);
+  letter-spacing: var(--sy-section-heading-ls);
+  color: var(--sy-ink);
+}
+
+/* Hero heading, with the serif "accent" span for emphasised words */
+.sy-hero-heading {
+  font-family: var(--sy-font-display);
+  font-size: var(--sy-hero-size-mobile);
+  font-weight: var(--sy-hero-weight);
+  line-height: var(--sy-hero-lh);
+  letter-spacing: var(--sy-hero-ls);
+  color: var(--sy-ink);
+}
+@media (min-width: 768px) {
+  .sy-hero-heading {
+    font-size: var(--sy-hero-size);
+  }
+}
+.sy-hero-heading .accent {
+  font-family: var(--sy-font-accent);
+  font-style: italic;
+  font-size: var(--sy-hero-accent-size);
+  font-weight: var(--sy-hero-accent-weight);
+  line-height: var(--sy-hero-accent-lh);
+  color: var(--sy-hero-accent-color);
+}
+
+/* Body copy */
+.sy-body {
+  font-family: var(--sy-font-body);
+  font-size: var(--sy-body-size);
+  line-height: var(--sy-body-lh);
+  font-weight: var(--sy-body-weight);
+  color: var(--sy-body-color);
+}
+
+/* Card surface (product cards, category cards, etc.) */
+.sy-card {
+  background: var(--sy-white);
+  border-radius: var(--sy-radius-card);
+  box-shadow: var(--sy-shadow-card);
+}
+.sy-card img {
+  border-radius: var(--sy-radius-image);
+}
